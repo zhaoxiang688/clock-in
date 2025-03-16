@@ -1,5 +1,5 @@
 window.reactEnv = {
-    SERVER_ADDR: 'http://192.111.1.134:31807/eoa-test',
+    SERVER_ADDR: 'https://eoa.pansofthk.com:7177/eoa',
 
     // 服务器接口相对路径
     KKFileViewURL: 'http://192.111.1.24:8012/onlinePreview?url=',

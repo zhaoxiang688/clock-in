@@ -1,34 +1,5 @@
 new VConsole();
 let userId = '';
-const judgeEnv = () => {
-    if (env == 'test') {
-        defaultUrl = 'http://192.111.1.134:31807/eoa-test';
-        window.reactEnv.SERVER_ADDR = defaultUrl;
-        env = 'test'
-        document.getElementById('request-url-label').innerHTML = '测试环境：'
-    } else {
-        defaultUrl = 'https://eoa.pansofthk.com:7177/eoa';
-        window.reactEnv.SERVER_ADDR = defaultUrl;
-        env = 'production'
-        document.getElementById('request-url-label').innerHTML = '生产环境:'
-    }
-    document.getElementById('request-url').innerHTML = defaultUrl;
-}
-const toggleEnv = () => {
-    if (env == 'test') {
-        defaultUrl = 'https://eoa.pansofthk.com:7177/eoa';
-        window.reactEnv.SERVER_ADDR = defaultUrl;
-        env = 'production'
-        document.getElementById('request-url-label').innerHTML = '生产环境:'
-    } else {
-        defaultUrl = 'http://192.111.1.134:31807/eoa-test';
-        window.reactEnv.SERVER_ADDR = defaultUrl;
-        env = 'test'
-        document.getElementById('request-url-label').innerHTML = '测试环境：'
-    }
-    document.getElementById('request-url').innerHTML = defaultUrl;
-    localStorage.setItem('env', env);
-}
 // 初始化页面
 const initPage = () => {
     document.getElementById('request-url').innerHTML = defaultUrl;
@@ -38,17 +9,10 @@ const initPage = () => {
         userId = userObj.username;
     }
     if (userId) {
-        document.getElementById('login-result').innerHTML = '用户已登录'
+        document.getElementById('login-result').innerHTML = userObj.username + '用户已登录'
     } else {
         document.getElementById('login-result').innerHTML = '用户未登录'
     }
-    judgeEnv();
-}
-// 点击切换环境按钮
-document.getElementById('toggle-env').onclick = function () {
-    localStorage.clear();
-    toggleEnv();
-    document.getElementById('login-result').innerHTML = '用户未登录'
 }
 // 初始化页面
 initPage();
