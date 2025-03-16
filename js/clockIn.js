@@ -27,6 +27,7 @@ const toggleEnv = () => {
         document.getElementById('request-url-label').innerHTML = '测试环境：'
     }
     document.getElementById('request-url').innerHTML = defaultUrl;
+    localStorage.setItem('env', env);
 }
 // 初始化页面
 const initPage = () => {
@@ -45,8 +46,8 @@ const initPage = () => {
 }
 // 点击切换环境按钮
 document.getElementById('toggle-env').onclick = function () {
-    toggleEnv();
     localStorage.clear();
+    toggleEnv();
     document.getElementById('login-result').innerHTML = '用户未登录'
 }
 // 初始化页面

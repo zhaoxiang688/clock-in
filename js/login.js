@@ -1,12 +1,12 @@
 let defaultUrl = window.reactEnv.SERVER_ADDR;
-let env = 'test';
+let env = localStorage.getItem('env') ? localStorage.getItem('env') : 'test';
 // 切换账号
-document.getElementById('toggle-user').onclick = function(){
+document.getElementById('toggle-user').onclick = function () {
     let value = document.getElementById('username').value;
-    if(value == '3646'){
+    if (value == '3646') {
         document.getElementById('username').value = '6979';
         document.getElementById('password').value = 'Zhaoxiaolong!23';
-    }else{
+    } else {
         document.getElementById('username').value = '3646';
         document.getElementById('password').value = '123456';
     }
@@ -34,7 +34,7 @@ const login = async (username, password) => {
             localStorage.setItem('ospm-UserData', JSON.stringify(userInfo));
             document.getElementById('login-result').innerHTML = '用户已登录'
             window.location.reload();
-        }else{
+        } else {
             document.getElementById('login-result').innerHTML = '用户未登录'
         }
     } catch (error) {
@@ -48,6 +48,12 @@ document.getElementById('login').onclick = function () {
     login(username, password);
 }
 document.getElementById('clearCache').onclick = function () {
+    localStorage.clear();
+    document.getElementById('login-result').innerHTML = '用户未登录'
+    localStorage.setItem('env', env);
+    window.location.reload();
+}
+document.getElementById('clear-Cache').onclick = function () {
     localStorage.clear();
     document.getElementById('login-result').innerHTML = '用户未登录'
     window.location.reload();
