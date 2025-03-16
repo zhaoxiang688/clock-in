@@ -3,17 +3,111 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=375, user-scalable=no, viewport-fit=cover">
     <title>测试打卡</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .clockIn {
+            width: 100%;
+            height: 100vh;
+            padding: 10px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        button {
+            padding: 10px 10px;
+            background-color: #1677FF;
+            color: #fff;
+            outline: 0;
+            border: 0;
+            border-radius: 4px;
+        }
+
+        #login,
+        #clearCache,
+        #clockIn,
+        #toggle-env,
+        #toggle-user,
+        #clockIn-judge {
+            width: 100%;
+        }
+
+        input {
+            width: 100%;
+            height: 40px;
+            padding: 0 10px;
+            outline: 0;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="clockIn">
+        <div style="text-align: center;margin-bottom: 10px;">
+            <button id="toggle-env">切换环境</button>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <div style="margin-bottom: 5px;" id="request-url-label"></div>
+            <span id="request-url"></span>
+        </div>
+        <div style="text-align: center;margin-bottom: 10px;">
+            <button id="toggle-user">切换账号</button>
+        </div>
+        <div style="display: flex;margin-bottom: 15px;align-items: center;">
+            <label for=""
+                style="display: inline-block;width: 70px;text-align: right;white-space: nowrap;flex-shrink: 0;">用户名：</label>
+            <input id="username" value="3646" type="text">
+        </div>
+        <div style="display: flex;align-items: center;">
+            <label for=""
+                style="display: inline-block;width: 70px;text-align: right;white-space: nowrap;flex-shrink: 0;">密码：</label>
+            <input id="password" value="123456" type="text">
+        </div>
+        <div style="margin-top:20px;text-align: center;">
+            <button id="login">登录</button>
+        </div>
+        <div style="margin-top:20px">
+            <span>登录结果：</span>
+            <span id="login-result"></span>
+        </div>
+        <div style="margin-top:20px">
+            <button id="clearCache">退出登录</button>
+        </div>
+        <div style="margin-top:20px">
+            <span>经纬度：</span>
+            <span id="jingweidu-result"></span>
+        </div>
+        <div style="margin-top:20px">
+            <button id="clockIn">打卡（无需判断打过卡）</button>
+        </div>
+        <div style="margin-top:20px">
+            <button id="clockIn-judge">打卡（需要判断是否打过卡）</button>
+        </div>
+        <div style="margin-top:20px">
+            <span>打卡结果：</span>
+            <span id="clock-result"></span>
+        </div>
+    </div>
     <script src="./js/ospmApm.js"></script>
     <script src="./js/ospmJsApi.js"></script>
+    <script src="./js/qs.min.js"></script>
     <script src="./js/axios.min.js"></script>
+    <script src="./js/axioslanjie.js"></script>
     <script src="./js/application.js"></script>
     <script src="./js/vconsole.min.js"></script>
-
+    <script src="./js/login.js"></script>
     <script src="./js/clockIn.js"></script>
 </body>
 
