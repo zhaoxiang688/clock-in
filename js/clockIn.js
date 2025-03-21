@@ -179,10 +179,10 @@ const findLocation = () => {
         // 在考勤范围内
         if (isRange.data.data) {
             document.getElementById('jingweidu-result').innerHTML = `经度：${obj.userLng} 纬度：${obj.userLat}`
-            console.log(`经度userLng：${lng} 纬度userLat：${lat}，在考勤范围内！！`)
+            console.log(`经度userLng：${obj.userLng} 纬度userLat：${obj.userLat}，在考勤范围内！！`)
         } else {
             document.getElementById('clock-result').innerHTML = '未在考勤范围内'
-            console.log(`经度userLng：${lng} 纬度userLat：${lat}，不在考勤范围内！！`)
+            console.log(`经度userLng：${obj.userLng} 纬度userLat：${obj.userLat}，不在考勤范围内！！`)
         }
     })
 
