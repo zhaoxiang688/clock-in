@@ -158,7 +158,6 @@ const getGpsInfo = (callback) => {
         if (callback) {
             let lat = value.data.lat;
             let lng = value.data.lng;
-            console.log(`经度userLng：${lng} 纬度userLat：${lat}`)
             callback({
                 userLat:lat,
                 userLng:lng
@@ -180,10 +179,10 @@ const findLocation = () => {
         // 在考勤范围内
         if (isRange.data.data) {
             document.getElementById('jingweidu-result').innerHTML = `经度：${obj.userLng} 纬度：${obj.userLat}`
-            console.log(`在考勤范围内！！`)
+            console.log(`经度userLng：${lng} 纬度userLat：${lat}，在考勤范围内！！`)
         } else {
             document.getElementById('clock-result').innerHTML = '未在考勤范围内'
-            console.log(`不在考勤范围内！！`)
+            console.log(`经度userLng：${lng} 纬度userLat：${lat}，不在考勤范围内！！`)
         }
     })
 
