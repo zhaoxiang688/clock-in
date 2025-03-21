@@ -142,13 +142,15 @@ const judgeClockIn = async () => {
 }
 // 获取定位信息
 const getGpsInfo = (callback) => {
+    console.log(777)
     ospmJsApi.device.webGPS().then((value) => {
+        console.log('value',value)
         if (callback) {
             let lat = value.data.lat;
             let lng = value.data.lng;
             callback({
-                lat,
-                lng
+                userLat:lat,
+                userLng:lng
             });
         }
     }).catch((reason) => {
@@ -166,7 +168,7 @@ const findLocation = () => {
         let isRange = await checkClock(rangeParams);
         // 在考勤范围内
         if (isRange.data.data) {
-            document.getElementById('jingweidu-result').innerHTML = `经度：${obj.lng} 纬度：${locationArr[num].lat}`
+            document.getElementById('jingweidu-result').innerHTML = `经度：${obj.userLng} 纬度：${obj.userLat}`
         } else {
             document.getElementById('clock-result').innerHTML = '未在考勤范围内'
         }
