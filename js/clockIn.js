@@ -63,7 +63,19 @@ const locationArr = [
     {
         userLat: 36.665417,
         userLng: 117.137557
-    }
+    },
+    {
+        userLat: 36.665415,
+        userLng: 117.137361
+    },
+    {
+        userLat: 36.665421,
+        userLng: 117.137363
+    },
+    {
+        userLat: 36.665402,
+        userLng: 117.137419
+    },
 ]
 
 function getRandomIntExclusive(min, max) {
@@ -142,12 +154,11 @@ const judgeClockIn = async () => {
 }
 // 获取定位信息
 const getGpsInfo = (callback) => {
-    console.log(777)
     ospmJsApi.device.webGPS().then((value) => {
-        console.log('value',value)
         if (callback) {
             let lat = value.data.lat;
             let lng = value.data.lng;
+            console.log(`经度userLng：${lng} 纬度userLat：${lat}`)
             callback({
                 userLat:lat,
                 userLng:lng
