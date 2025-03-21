@@ -36,6 +36,7 @@
         #login,
         #clearCache,
         #clockIn,
+        #find-location,
         #clockIn-judge{
             width: 100%;
             font-size: 16px;
@@ -84,6 +85,9 @@
             <span id="jingweidu-result"></span>
         </div>
         <div style="margin-top:20px">
+            <button id="find-location">查找打卡可用经纬度</button>
+        </div>
+        <div style="margin-top:20px">
             <button id="clockIn">打卡（无需判断打过卡）</button>
         </div>
         <div style="margin-top:20px">
@@ -94,6 +98,8 @@
             <span id="clock-result"></span>
         </div>
     </div>
+    <script src="./js/ospmApm.js"></script>
+    <script src="./js/ospmJsApi.js"></script>
     <script src="./js/qs.min.js"></script>
     <script src="./js/axios.min.js"></script>
     <script src="./js/axioslanjie.js"></script>

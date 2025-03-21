@@ -140,6 +140,39 @@ const judgeClockIn = async () => {
         console.error('失败', error)
     }
 }
+// 获取定位信息
+const getGpsInfo = (callback) => {
+    ospmJsApi.device.webGPS().then((value) => {
+        if (callback) {
+            let lat = value.data.lat;
+            let lng = value.data.lng;
+            callback({
+                lat,
+                lng
+            });
+        }
+    }).catch((reason) => {
+        console.error('获取定位信息失败', reason);
+    })
+}
+// 查找可用经纬度
+const findLocation = () => {
+    getGpsInfo(async (obj) => {
+        // 判断是否在打卡范围
+        let rangeParams = {
+            userId,
+            ...obj
+        }
+        let isRange = await checkClock(rangeParams);
+        // 在考勤范围内
+        if (isRange.data.data) {
+            document.getElementById('jingweidu-result').innerHTML = `经度：${obj.lng} 纬度：${locationArr[num].lat}`
+        } else {
+            document.getElementById('clock-result').innerHTML = '未在考勤范围内'
+        }
+    })
+
+}
 // 点击打卡按钮（无需判断是否打过卡）
 document.getElementById('clockIn').onclick = function () {
     if (userId) {
@@ -152,6 +185,14 @@ document.getElementById('clockIn').onclick = function () {
 document.getElementById('clockIn-judge').onclick = function () {
     if (userId) {
         judgeClockIn();
+    } else {
+        document.getElementById('clock-result').innerHTML = '请先登录!!!!'
+    }
+}
+// 点击查找可用经纬度
+document.getElementById('find-location').onclick = function () {
+    if (userId) {
+        findLocation();
     } else {
         document.getElementById('clock-result').innerHTML = '请先登录!!!!'
     }
