@@ -49,18 +49,6 @@ const punchTheClock = (params) => axios.post(defaultUrl + '/attendance/clock', Q
 });
 const locationArr = [
     {
-        userLat: 36.665128,
-        userLng: 117.137234
-    },
-    {
-        userLat: 36.665296,
-        userLng: 117.137776
-    },
-    {
-        userLat: 36.665411,
-        userLng: 117.137499
-    },
-    {
         userLat: 36.665417,
         userLng: 117.137557
     },
@@ -76,15 +64,71 @@ const locationArr = [
         userLat: 36.665402,
         userLng: 117.137419
     },
+    {
+        userLat: 36.665391,
+        userLng: 117.137749
+    },
+    {
+        userLat: 36.665143,
+        userLng: 117.137015
+    },
+    {
+        userLat: 36.664847,
+        userLng: 117.136827
+    },
+    {
+        userLat: 36.664994,
+        userLng: 117.136461
+    },
+    {
+        userLat: 36.664993,
+        userLng: 117.136411
+    },
+    {
+        userLat: 36.664991,
+        userLng: 117.136423
+    },
+    {
+        userLat: 36.665067,
+        userLng: 117.136558
+    },
+    {
+        userLat: 36.665304,
+        userLng: 117.136674
+    },
+    {
+        userLat: 36.665325,
+        userLng: 117.136674
+    },
+    {
+        userLat: 36.665226,
+        userLng: 117.136995
+    },
+    {
+        userLat: 36.665344,
+        userLng: 117.136594
+    },
+    {
+        userLat: 36.665341,
+        userLng: 117.136581
+    },
+    {
+        userLat: 36.665181,
+        userLng: 117.137059
+    },
+    {
+        userLat: 36.665282,
+        userLng: 117.137237
+    }
 ]
 
 function getRandomIntExclusive(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min; // ‌:ml-citation{ref="3,6" data="citationList"}
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
 // 无需判断下需不需要打卡
 const clockIn = async () => {
-    // 调用示例：生成0-49的随机整数
+    // 生成随机整数
     const num = getRandomIntExclusive(0, locationArr.length);
     if (locationArr[num]) {
         document.getElementById('jingweidu-result').innerHTML = `经度：${locationArr[num].userLng} 纬度：${locationArr[num].userLat}`
@@ -145,8 +189,8 @@ const judgeClockIn = async () => {
                 document.getElementById('jingweidu-result').innerHTML = ''
             }
         } else {
-            document.getElementById('jingweidu-result').innerHTML = '不需要打卡'
-            document.getElementById('clock-result').innerHTML = '不需要打卡'
+            document.getElementById('jingweidu-result').innerHTML = '已打卡，无需打卡!'
+            document.getElementById('clock-result').innerHTML = '已打卡，无需打卡!'
         }
     } catch (error) {
         console.error('失败', error)
@@ -159,8 +203,8 @@ const getGpsInfo = (callback) => {
             let lat = value.data.lat;
             let lng = value.data.lng;
             callback({
-                userLat:lat,
-                userLng:lng
+                userLat: lat,
+                userLng: lng
             });
         }
     }).catch((reason) => {
