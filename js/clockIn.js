@@ -10,7 +10,11 @@ const initPage = () => {
     }
     if (userId) {
         document.getElementById('login-result').innerHTML = userObj.username + '用户已登录'
+        document.getElementById('clearCache').style.display = 'block';
+        document.getElementById('login').style.display = 'none';
     } else {
+        document.getElementById('clearCache').style.display = 'none';
+        document.getElementById('login').style.display = 'block';
         document.getElementById('login-result').innerHTML = '用户未登录'
     }
 }
@@ -144,9 +148,9 @@ const clockIn = async () => {
                 // 开始打卡
                 let clock = await punchTheClock(rangeParams);
                 if (clock.data.data) {
-                    document.getElementById('clock-result').innerHTML = '打卡成功!!'
+                    document.getElementById('clock-result').innerHTML = '打卡成功 ！！'
                 } else {
-                    document.getElementById('clock-result').innerHTML = '打卡失败!!'
+                    document.getElementById('clock-result').innerHTML = '打卡失败 ！！'
                 }
             } else {
                 document.getElementById('clock-result').innerHTML = '未在考勤范围内'
@@ -178,9 +182,9 @@ const judgeClockIn = async () => {
                     // 开始打卡
                     let clock = await punchTheClock(rangeParams);
                     if (clock.data.data) {
-                        document.getElementById('clock-result').innerHTML = '打卡成功!!'
+                        document.getElementById('clock-result').innerHTML = '打卡成功 ！！'
                     } else {
-                        document.getElementById('clock-result').innerHTML = '打卡失败!!'
+                        document.getElementById('clock-result').innerHTML = '打卡失败 ！！'
                     }
                 } else {
                     document.getElementById('clock-result').innerHTML = '未在考勤范围内'
@@ -189,8 +193,8 @@ const judgeClockIn = async () => {
                 document.getElementById('jingweidu-result').innerHTML = ''
             }
         } else {
-            document.getElementById('jingweidu-result').innerHTML = '已打卡，无需打卡!'
-            document.getElementById('clock-result').innerHTML = '已打卡，无需打卡!'
+            document.getElementById('jingweidu-result').innerHTML = '已打卡，无需打卡 ！！'
+            document.getElementById('clock-result').innerHTML = '已打卡，无需打卡 ！！'
         }
     } catch (error) {
         console.error('失败', error)
